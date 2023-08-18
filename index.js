@@ -2,7 +2,6 @@ class Node
 {
     constructor(data = null, left = null, right = null)
     {
-        console.log('wokring')
         this.data = data;
         this.left = left;
         this.right = right
@@ -11,13 +10,13 @@ class Node
 
 class tree
 {
-    constructor(array = null)
+    constructor(array = [null])
     {
-        if(array!= null)
+        if(Array.isArray(array))
         {
             this.root = buildTree(array);
         }
-        else{this.root = array}
+        else{console.log('Not an Array')}
     }
 
 }
@@ -28,7 +27,6 @@ function buildTree(array, start = 0, end = array.length-1)
     if (start>end){return null};
     let mid = Math.floor((start+end)/2);
     let root = new Node(array[mid]);
-    console.log(root)
     root.left = (buildTree(array,start,mid-1));
     root.right = (buildTree(array,mid+1,end));
     return root;
@@ -97,6 +95,6 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
     }
   };
 
-const newTree = new tree([23,12,34,15,54,67,8,2,1,5,89,45,6,31])
+const newTree = new tree([34,546,2,3])
 console.log(newTree)
-console.log(prettyPrint(newTree.root))
+prettyPrint(newTree.root)
