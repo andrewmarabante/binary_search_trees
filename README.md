@@ -1,0 +1,1 @@
+In this project I am going to be creating a binary tree that will take in an array and return a balanced binary tree with nodes. Let's get started!
