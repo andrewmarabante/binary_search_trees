@@ -19,6 +19,73 @@ class tree
         else{console.log('Not an Array')}
     }
 
+    add(value)
+    {
+       
+    }
+
+    remove(value)
+    {
+        const removeNode = (node, data) =>
+        {
+            if (node === null)
+            {
+                console.log('null')
+                return null;
+            }
+            if (data === node.data)
+            {
+                console.log('foundnode')
+                if (node.left ===null && node.right ===null)
+                {
+                    console.log('bothnull')
+                    //working
+                    return null;
+                }
+                if (node.left === null)
+                {
+                    console.log('leftnull')
+                    //working
+                    return node.right;
+                }
+                if (node.right === null)
+                {
+                    //this code will only get called if I add new nodes since the balanced 
+                    //serach tree won't allow left nodes without right nodes
+                    console.log('rightnull')
+                    return node.left;
+                }
+                if(node.left!==null && node.right!==null)
+                {
+                    console.log('bothNotnull')
+                    let tempNode = node.right;
+                    while(tempNode.left!==null)
+                    {
+                        tempNode = tempNode.left;
+                    }
+                    node.data = tempNode.data;
+                    console.log(node.right)
+                    console.log(tempNode.data)
+                    node.right= removeNode(node.right,tempNode.data);
+                    return node;
+                }
+            }
+            else if (value < node.data)
+            {
+                console.log('less')
+                node.left = removeNode(node.left,data);
+                return node;
+            }
+            else if (value > node.data)
+            {
+                console.log('more')
+                node.right = removeNode(node.right,data);
+                return node;
+            }
+        }
+        this.root = removeNode(this.root, value);
+    }
+
 }
 
 function buildTree(array, start = 0, end = array.length-1)
@@ -95,6 +162,9 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
     }
   };
 
-const newTree = new tree([34,546,2,3])
+const newTree = new tree([2,1,5,6,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50])
 console.log(newTree)
+prettyPrint(newTree.root)
+newTree.remove(16);
+console.log(newTree.root)
 prettyPrint(newTree.root)
