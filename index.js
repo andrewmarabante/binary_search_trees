@@ -143,16 +143,17 @@ class tree
         return search(this.root, value);
     }
 
-    levelOrder()
+    breadthFirst()
     {
         let root = this.root;
         const breadth = (node) =>
         {
+        const array = [];
         const queu = [node];
         while(queu.length > 0)
         {
             const curr = queu.shift();
-            console.log(curr.data)
+            array.push(curr.data);
             if (curr.left !== null)
             {   
             queu.push(curr.left)
@@ -162,6 +163,7 @@ class tree
             queu.push(curr.right)              
             }
         }
+        return array;
         }
         return breadth(root);
     }
@@ -248,6 +250,5 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 const newTree = new tree([2,1,5,6,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50])
 prettyPrint(newTree.root)
-console.log(newTree.find(32))
-console.log(newTree.levelOrder())
+console.log(newTree.breadthFirst())
 //[2,1,5,6,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50]
