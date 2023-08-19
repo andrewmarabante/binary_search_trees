@@ -21,11 +21,47 @@ class tree
 
     add(value)
     {
-       
+       const node = this.root;
+       if (node.data === null)
+       {
+            this.root = new Node(value);
+       }
+       const search = (node) =>
+       {
+            if(value<node.data)
+            {
+                if(node.left === null)
+                {
+                    node.left = new Node(value);
+                    return;
+                }
+                else if(node.left != null)
+                {
+                    return search(node.left);
+                }
+            }
+            else if(value>node.data)
+            {
+                if(node.right === null)
+                {
+                    node.right = new Node(value);
+                    return;
+                }
+                else if(node.right != null)
+                {
+                    return search(node.right);
+                }
+            }
+            else{
+                return null
+            }
+       }
+    return search(node);
     }
 
     remove(value)
     {
+        //working
         const removeNode = (node, data) =>
         {
             if (node === null)
@@ -162,9 +198,19 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
     }
   };
 
-const newTree = new tree([2,1,5,6,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50])
+const newTree = new tree()
 console.log(newTree)
+newTree.add(5)
+newTree.add(3)
+newTree.add(2)
+newTree.add(8)
+newTree.add(4)
+newTree.add(9)
+newTree.add(6)
+newTree.add(10)
+newTree.add(1)
+newTree.add(5)
 prettyPrint(newTree.root)
-newTree.remove(16);
-console.log(newTree.root)
-prettyPrint(newTree.root)
+
+
+//[2,1,5,6,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50]
