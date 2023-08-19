@@ -143,7 +143,7 @@ class tree
         return search(this.root, value);
     }
 
-    breadthFirst()
+    breadthFirst(func)
     {
         let root = this.root;
         const breadth = (node) =>
@@ -163,9 +163,46 @@ class tree
             queu.push(curr.right)              
             }
         }
-        return array;
+        if (func != null)
+        {
+        return func(array);
+        }else{
+            console.log(array)
+            return array;
+        }
         }
         return breadth(root);
+    }
+
+    inOrder(func)
+    {
+        let root = this.root;
+        console.log('hello')
+    }
+
+    preOrder()
+    {        
+        let root = this.root;
+        let array = [];
+        const inOrder = (node) =>
+        {
+            array.push(node);
+            if(node.left !== null)
+            {
+            inOrder(node.left);
+            }
+            if(node.right !== null)
+            {
+            inOrder(node.right);
+            }
+            return array;
+        }
+        return inOrder(root)
+    }
+
+    postOrder()
+    {
+        console.log('hello')
     }
 }
 
@@ -250,5 +287,5 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 const newTree = new tree([2,1,5,6,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50])
 prettyPrint(newTree.root)
-console.log(newTree.breadthFirst())
+console.log(newTree.preOrder());
 //[2,1,5,6,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50]
