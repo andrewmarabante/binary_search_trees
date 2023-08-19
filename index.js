@@ -122,6 +122,26 @@ class tree
         this.root = removeNode(this.root, value);
     }
 
+    find(value)
+    {
+        const search = (node, value) =>
+        {
+            if(value === node.data)
+            {
+                return node;
+            }
+            else if(value < node.data && node.left!== null)
+            {
+                return search(node.left,value);
+            }
+            else if(value > node.data && node.right!== null)
+            {
+                return search(node.right, value);
+            }
+            else{return 'Not In Tree'}
+        }
+        return search(this.root, value);
+    }
 }
 
 function buildTree(array, start = 0, end = array.length-1)
@@ -198,19 +218,8 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
     }
   };
 
-const newTree = new tree()
-console.log(newTree)
-newTree.add(5)
-newTree.add(3)
-newTree.add(2)
-newTree.add(8)
-newTree.add(4)
-newTree.add(9)
-newTree.add(6)
-newTree.add(10)
-newTree.add(1)
-newTree.add(5)
+const newTree = new tree([2,1,5,6,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50])
 prettyPrint(newTree.root)
-
+console.log(newTree.find(32))
 
 //[2,1,5,6,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50]
