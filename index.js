@@ -182,13 +182,15 @@ class tree
         {
             if(node.left !== null)
             {
-            inOrder(node.left);
+                inOrder(node.left);
             }
+            
+            array.push(node)
+
             if(node.right !== null)
             {
-            inOrder(node.right);
+                inOrder(node.right)
             }
-            array.push(node);
             return array;
         }
         return inOrder(root);
@@ -198,20 +200,20 @@ class tree
     {        
         let root = this.root;
         let array = [];
-        const inOrder = (node) =>
+        const preOrder = (node) =>
         {
             array.push(node);
             if(node.left !== null)
             {
-            inOrder(node.left);
+            preOrder(node.left);
             }
             if(node.right !== null)
             {
-            inOrder(node.right);
+            preOrder(node.right);
             }
             return array;
         }
-        return inOrder(root)
+        return preOrder(root)
     }
 
     postOrder()
@@ -219,20 +221,20 @@ class tree
         //In the process of solving inOrder I solved postOrder lol
         let root = this.root;
         let array = [];
-        const inOrder = (node) =>
+        const postOrder = (node) =>
         {
             if(node.left !== null)
             {
-            inOrder(node.left);
+            postOrder(node.left);
             }
             if(node.right !== null)
             {
-            inOrder(node.right);
+            postOrder(node.right);
             }
             array.push(node);
             return array;
         }
-        return inOrder(root);
+        return postOrder(root);
     }
 }
 
