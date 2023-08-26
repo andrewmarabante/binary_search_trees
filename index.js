@@ -264,12 +264,28 @@ class tree
         }
         return findHeight(node);
     }
+
+    depth(value)
+    {
+        let root = newTree.root;
+        let node = this.find(value);
+        let dist = -1;
+        const findDepth = (root,node) =>
+        {
+            if (root === null)
+            {
+                return -1;
+            }
+            if (root === node || (dist = findDepth(root.left, node)) >= 0 || (dist = findDepth(root.right, node)) >= 0)
+            {
+                return dist + 1;
+            }
+            return dist;
+        }
+        return findDepth(root,node);
+    }
 }
 
-function someFunc(input)
-{
-    console.log('hello')
-}
 
 function buildTree(array, start = 0, end = array.length-1)
 {
@@ -347,5 +363,5 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 const newTree = new tree([2,1,5,6,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50])
 prettyPrint(newTree.root)
-console.log(newTree.height(48));
+console.log(newTree.depth(26));
 //[2,1,5,6,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50]
