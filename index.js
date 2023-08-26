@@ -279,21 +279,17 @@ class tree
         let root = newTree.root;
         const checkBalance = (root) =>
         {
-            console.log('working')
             if (root === null || (root.left ===null && root.right ===null))
             {   
-                console.log('null/1')
                 return true;
             }
             if(Math.abs(this.height(root.left.data)-this.height(root.right.data))<1)
             {
-                console.log('bal')
                 return true;
             }
             else{ return false}
         }
         return checkBalance(root)
-        console.log(root)
     }
 
     reBalance()
@@ -303,10 +299,7 @@ class tree
         {
             this.remove(array[i])
         }
-        console.log(newTree);
         this.root = buildTree(array);
-        console.log(newTree)
-        prettyPrint(newTree.root)
     }
 }
 
@@ -385,9 +378,32 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
     }
   };
 
-const newTree = new tree([2,1,5,6,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50])
-newTree.add(3)
-newTree.add(4)
-prettyPrint(newTree.root)
+//Lets test all these functions out!
+  let randomArr = [];
+  for (let i = 0; i < 20; i++) {
+     randomArr.push(Math.floor(Math.random() * 100) + 1);
+  }
+const newTree = new tree(randomArr)
+prettyPrint(newTree.root);
+console.log(newTree.isBalanced());
+console.log(newTree.breadthFirst());
+console.log(newTree.postOrder());
+console.log(newTree.preOrder());
+console.log(newTree.inOrder());
+newTree.add(5);
+newTree.add(8);
+newTree.add(12);
+newTree.add(4);
+newTree.add(2);
+newTree.add(3);
+newTree.add(1);
+newTree.add(11);
+newTree.add(13);
+console.log(newTree.isBalanced());
 newTree.reBalance();
+console.log(newTree.isBalanced());
+console.log(newTree.breadthFirst());
+console.log(newTree.postOrder());
+console.log(newTree.preOrder());
+console.log(newTree.inOrder());
 //[2,1,5,6,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50]
