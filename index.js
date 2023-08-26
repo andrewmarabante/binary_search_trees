@@ -66,21 +66,17 @@ class tree
         {
             if (node === null)
             {
-                console.log('null')
                 return null;
             }
             if (data === node.data)
             {
-                console.log('foundnode')
                 if (node.left ===null && node.right ===null)
                 {
-                    console.log('bothnull')
                     //working
                     return null;
                 }
                 if (node.left === null)
                 {
-                    console.log('leftnull')
                     //working
                     return node.right;
                 }
@@ -88,33 +84,27 @@ class tree
                 {
                     //this code will only get called if I add new nodes since the balanced 
                     //serach tree won't allow left nodes without right nodes
-                    console.log('rightnull')
                     return node.left;
                 }
                 if(node.left!==null && node.right!==null)
                 {
-                    console.log('bothNotnull')
                     let tempNode = node.right;
                     while(tempNode.left!==null)
                     {
                         tempNode = tempNode.left;
                     }
                     node.data = tempNode.data;
-                    console.log(node.right)
-                    console.log(tempNode.data)
                     node.right= removeNode(node.right,tempNode.data);
                     return node;
                 }
             }
             else if (value < node.data)
             {
-                console.log('less')
                 node.left = removeNode(node.left,data);
                 return node;
             }
             else if (value > node.data)
             {
-                console.log('more')
                 node.right = removeNode(node.right,data);
                 return node;
             }
@@ -166,8 +156,7 @@ class tree
         if (func != null)
         {
         return func(array);
-        }else{
-            console.log(array)
+        }else{  
             return array;
         }
         }
@@ -306,6 +295,19 @@ class tree
         return checkBalance(root)
         console.log(root)
     }
+
+    reBalance()
+    {
+        let array = this.breadthFirst();
+        for (let i=0; i<array.length; i++)
+        {
+            this.remove(array[i])
+        }
+        console.log(newTree);
+        this.root = buildTree(array);
+        console.log(newTree)
+        prettyPrint(newTree.root)
+    }
 }
 
 
@@ -385,6 +387,7 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 const newTree = new tree([2,1,5,6,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50])
 newTree.add(3)
+newTree.add(4)
 prettyPrint(newTree.root)
-console.log(newTree.isBalanced());
+newTree.reBalance();
 //[2,1,5,6,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50]
