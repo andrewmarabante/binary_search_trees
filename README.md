@@ -1,1 +1,3 @@
 In this project I am going to be creating a binary tree that will take in an array and return a balanced binary tree with nodes. Let's get started!
+
+Finished. This project was much harder than any of the other projects I've done in terms of complexity. Learning how the computer reads recursion and creates call stacks was super annoying because my code was just NOT doing what I wanted.. There was some frustration so I took a couple days off since I was grinding a little too much on these projects I kinda burned myself out. At the end of the day, this is something I need to learn so it was for the best. Starting to get pretty good at this programming thing EH!
