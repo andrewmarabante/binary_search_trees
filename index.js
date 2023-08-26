@@ -253,7 +253,7 @@ class tree
     {
         let node = this.find(value);
         const findHeight = (node) =>
-        {
+        {   
             if (node === null)
             {
                 return -1;
@@ -283,6 +283,28 @@ class tree
             return dist;
         }
         return findDepth(root,node);
+    }
+
+    isBalanced()
+    {
+        let root = newTree.root;
+        const checkBalance = (root) =>
+        {
+            console.log('working')
+            if (root === null || (root.left ===null && root.right ===null))
+            {   
+                console.log('null/1')
+                return true;
+            }
+            if(Math.abs(this.height(root.left.data)-this.height(root.right.data))<1)
+            {
+                console.log('bal')
+                return true;
+            }
+            else{ return false}
+        }
+        return checkBalance(root)
+        console.log(root)
     }
 }
 
@@ -362,6 +384,7 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   };
 
 const newTree = new tree([2,1,5,6,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50])
+newTree.add(3)
 prettyPrint(newTree.root)
-console.log(newTree.depth(26));
+console.log(newTree.isBalanced());
 //[2,1,5,6,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50]
