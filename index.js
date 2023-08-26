@@ -184,7 +184,7 @@ class tree
             {
                 inOrder(node.left);
             }
-            
+
             array.push(node)
 
             if(node.right !== null)
@@ -193,10 +193,14 @@ class tree
             }
             return array;
         }
-        return inOrder(root);
+        if (func != null)
+        {
+        return func(inOrder(root));
+        }
+        else{return inOrder(root);}
     }
 
-    preOrder()
+    preOrder(func)
     {        
         let root = this.root;
         let array = [];
@@ -213,10 +217,14 @@ class tree
             }
             return array;
         }
-        return preOrder(root)
+        if (func != null)
+        {
+        return func(preOrder(root));
+        }
+        else{return preOrder(root);}
     }
 
-    postOrder()
+    postOrder(func)
     {
         //In the process of solving inOrder I solved postOrder lol
         let root = this.root;
@@ -234,13 +242,33 @@ class tree
             array.push(node);
             return array;
         }
-        return postOrder(root);
+        if (func != null)
+        {
+        return func(postOrder(root));
+        }
+        else{return postOrder(root);}
+    }
+
+    height(value)
+    {
+        let node = this.find(value);
+        const findHeight = (node) =>
+        {
+            if (node === null)
+            {
+                return -1;
+            }
+            let left = findHeight(node.left);
+            let right = findHeight(node.right);
+            return Math.max(left, right)+1;
+        }
+        return findHeight(node);
     }
 }
 
 function someFunc(input)
 {
-    console.log(input)
+    console.log('hello')
 }
 
 function buildTree(array, start = 0, end = array.length-1)
@@ -319,5 +347,5 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 const newTree = new tree([2,1,5,6,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50])
 prettyPrint(newTree.root)
-console.log(newTree.inOrder());
+console.log(newTree.height(48));
 //[2,1,5,6,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50]
